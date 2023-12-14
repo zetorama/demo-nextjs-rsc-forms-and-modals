@@ -17,6 +17,9 @@ function validateAddress(address: any): address is DeliveryAddress {
 }
 
 export async function saveAddress(formData: FormData) {
+  // Temporary adding manual delay just for demo purposes
+  await new Promise(next => setTimeout(next, 3000))
+
   const address = {
     name: formData.get('name'),
     street: formData.get('street'),

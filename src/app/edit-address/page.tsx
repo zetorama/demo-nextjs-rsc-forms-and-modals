@@ -1,5 +1,5 @@
 import { getAddress } from "~/actions";
-import { AddressForm, AddressFormError } from "~/app/edit-address/AddressForm";
+import { AddressForm, AddressFormError, AddressFormSubmit } from "~/components/AddressForm";
 import { Field } from "~/components/Field";
 
 export default async function AddressPage() {
@@ -22,7 +22,7 @@ export default async function AddressPage() {
 
         <div className="flex gap-2">
           <a href=".." className="p-2 rounded bg-slate-500 text-white hover:ring ring-slate-500">Back</a>
-          <button type="submit" className="p-2 rounded bg-blue-500 text-white hover:ring ring-slate-500">Save address</button>
+          <AddressFormSubmit className="p-2 rounded bg-blue-500 text-white enabled:hover:ring ring-slate-500 disabled:opacity-50">Save address</AddressFormSubmit>
         </div>
       </AddressForm>
     </main>
