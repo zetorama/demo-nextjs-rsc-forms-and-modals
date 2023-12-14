@@ -1,7 +1,8 @@
 'use client'
 
 import { FormEvent, ReactNode, createContext, useContext, useState } from "react";
-import { saveAddress } from "~/actions";
+import { DeliveryAddress, saveAddress } from "~/actions";
+import { Field } from "~/components/Field";
 
 type AddressFormContext = {
   error?: string
@@ -65,5 +66,17 @@ export function AddressFormSubmit({ children, className }: { children: ReactNode
 
   return (
     <button type="submit" disabled={!dirty || saving} className={className}>{saving ? 'Saving...' : children}</button>
+  )
+}
+
+export function AddressFormFields({ address }: { address?: DeliveryAddress }) {
+  return (
+    <>
+      <Field label='Name' type="text" name="name" defaultValue={address?.name} autoComplete="shipping name" />
+      <Field label='Street number' type="text" name="street" defaultValue={address?.street} autoComplete="shipping street-address" />
+      <Field label='City' type="text" name="city" defaultValue={address?.city} autoComplete="shipping address-level2" />
+      <Field label='Country' type="text" name="country" defaultValue={address?.country} autoComplete="shipping country" />
+      <Field label='Postal code' type="text" name="zip" defaultValue={address?.zip} autoComplete="shipping postal-code" />
+    </>
   )
 }

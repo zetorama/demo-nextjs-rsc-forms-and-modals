@@ -1,6 +1,6 @@
+import Link from "next/link";
 import { getAddress } from "~/actions";
-import { AddressForm, AddressFormError, AddressFormSubmit } from "~/components/AddressForm";
-import { Field } from "~/components/Field";
+import { AddressForm, AddressFormError, AddressFormFields, AddressFormSubmit } from "~/components/AddressForm";
 
 export default async function AddressPage() {
   const address = await getAddress()
@@ -11,17 +11,13 @@ export default async function AddressPage() {
 
       <AddressForm className="flex flex-col gap-4">
         <fieldset className="flex flex-col gap-2">
-          <Field label='Name' type="text" name="name" defaultValue={address?.name} autoComplete="shipping name" />
-          <Field label='Street number' type="text" name="street" defaultValue={address?.street} autoComplete="shipping street-address" />
-          <Field label='City' type="text" name="city" defaultValue={address?.city} autoComplete="shipping address-level2" />
-          <Field label='Country' type="text" name="country" defaultValue={address?.country} autoComplete="shipping country" />
-          <Field label='Postal code' type="text" name="zip" defaultValue={address?.zip} autoComplete="shipping postal-code" />
+          <AddressFormFields address={address} />
         </fieldset>
 
         <AddressFormError />
 
         <div className="flex gap-2">
-          <a href=".." className="p-2 rounded bg-slate-500 text-white hover:ring ring-slate-500">Back</a>
+          <Link href=".." className="p-2 rounded bg-slate-500 text-white hover:ring ring-slate-500">Back</Link>
           <AddressFormSubmit className="p-2 rounded bg-blue-500 text-white enabled:hover:ring ring-slate-500 disabled:opacity-50">Save address</AddressFormSubmit>
         </div>
       </AddressForm>
